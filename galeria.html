@@ -104,28 +104,37 @@
             opacity: 0;
         }
 
-        .photo-container {
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
             width: 100%;
-            max-width: 650px;
+            max-width: 900px;
             margin: 0 auto;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out 0.8s forwards;
+        }
+
+        .photo-item {
+            width: 100%;
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 25px rgba(188, 19, 254, 0.2);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            opacity: 0;
-            animation: fadeIn 1.5s ease-out 0.8s forwards;
             position: relative;
             background: rgba(0, 0, 0, 0.5);
+            aspect-ratio: 4/3;
         }
 
-        .photo-container img {
+        .photo-item img {
             width: 100%;
-            height: auto;
+            height: 100%;
+            object-fit: cover;
             display: block;
             transition: transform 0.5s ease;
         }
 
-        .photo-container:hover img {
+        .photo-item:hover img {
             transform: scale(1.02);
         }
 
@@ -200,8 +209,13 @@
         <h1>Visión Estelar</h1>
         <p class="subtitle">La armonía del universo y la estructura en una sola imagen.</p>
 
-        <div class="photo-container">
-            <img src="foto.png" alt="Concepto Katamari y la Tierra en el espacio">
+        <div class="gallery-grid">
+            <div class="photo-item">
+                <img src="foto.png" alt="Concepto Katamari y la Tierra en el espacio">
+            </div>
+            <div class="photo-item">
+                <img src="foto2.png" alt="Segunda imagen en la galería">
+            </div>
         </div>
 
         <a href="index.html" class="btn-back">✧ Volver a la Base</a>
