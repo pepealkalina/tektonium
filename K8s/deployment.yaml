@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mi-app
+  labels:
+    app: mi-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mi-app
+  template:
+    metadata:
+      labels:
+        app: mi-app
+    spec:
+      containers:
+      - name: nginx-container
+        # Asegúrate de que esta sea la imagen que subes en el paso de Kaniko
+        image: docker.io/pepealkalina2/mi-app:latest
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "200m"
+            memory: "256Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mi-app-service
+spec:
+  selector:
+    app: mi-app
+  ports:
+    - protocol: TCP
+      port: 80         # Puerto del servicio
+      targetPort: 80    # Puerto del contenedor
+      nodePort: 30080   # Puerto para acceder desde fuera de Minikube
+  type: NodePort
