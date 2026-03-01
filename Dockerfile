@@ -9,6 +9,7 @@ RUN rm -rf /usr/share/nginx/html/*
 
 # Copia nuestro index.html al directorio del servidor de nginx
 COPY index.html /usr/share/nginx/html/index.html
+COPY galeria.html /usr/share/nginx/html/galeria.html
 
 # Exponer el puerto estándar de HTTP
 EXPOSE 80
